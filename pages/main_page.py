@@ -1,4 +1,5 @@
 import time
+import allure
 
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -88,43 +89,45 @@ class MainPage(Base):
 
     def login_and_verify(self):
 
-        Logger.add_start_step(method="login_and_verify")
+        with allure.step("Login and verify"):
+            Logger.add_start_step(method="login_and_verify")
 
-        # Нажимаем на pop-up с авторизацией
-        self.click_personal_button()
+            # Нажимаем на pop-up с авторизацией
+            self.click_personal_button()
 
-        # Проверяем, что открылся pop-up с авторизацией
-        self.assert_word(self.get_login_popup_checkword(), "Личный кабинет")
+            # Проверяем, что открылся pop-up с авторизацией
+            self.assert_word(self.get_login_popup_checkword(), "Личный кабинет")
 
-        # Вводим тестовые данные для авторизации и нажимаем на кнопку Login
-        self.input_email_login_field("petrotesterrino@proton.me")
-        self.input_password_field("petpetVvi7pgtfdc")
-        self.click_login_button()
-        time.sleep(1)
+            # Вводим тестовые данные для авторизации и нажимаем на кнопку Login
+            self.input_email_login_field("petrotesterrino@proton.me")
+            self.input_password_field("petpetVvi7pgtfdc")
+            self.click_login_button()
+            time.sleep(1)
 
-        # Нажимаем на кнопку перехода в личный кабинет и проверяем, что перешли
-        self.click_personal_button()
-        self.assert_word(self.get_topic_heading_checkword(), "Личный кабинет")
+            # Нажимаем на кнопку перехода в личный кабинет и проверяем, что перешли
+            self.click_personal_button()
+            self.assert_word(self.get_topic_heading_checkword(), "Личный кабинет")
 
-        Logger.add_end_step(url=self.driver.current_url, method="login_and_verify")
+            Logger.add_end_step(url=self.driver.current_url, method="login_and_verify")
 
     def enter_main_page(self):
 
-        Logger.add_start_step(method="enter_main_page")
+        with allure.step("Enter main page"):
+            Logger.add_start_step(method="enter_main_page")
 
-        self.driver.get(self.url)
-        self.driver.maximize_window()
+            self.driver.get(self.url)
+            self.driver.maximize_window()
 
-        # Получаем текущий URL
-        self.get_current_url()
+            # Получаем текущий URL
+            self.get_current_url()
 
-        # Авторизуемся и проверяем, что зашли в систему
-        self.login_and_verify()
+            # Авторизуемся и проверяем, что зашли в систему
+            self.login_and_verify()
 
-        # Нажимаем на кнопку перехода в каталог одежды
-        self.click_select_clothes_catalog()
+            # Нажимаем на кнопку перехода в каталог одежды
+            self.click_select_clothes_catalog()
 
-        # Проверяем, что перешли в каталог
-        self.assert_word(self.get_topic_page_title_checkword(), "Одежда")
+            # Проверяем, что перешли в каталог
+            self.assert_word(self.get_topic_page_title_checkword(), "Одежда")
 
-        Logger.add_end_step(url=self.driver.current_url, method="enter_main_page")
+            Logger.add_end_step(url=self.driver.current_url, method="enter_main_page")

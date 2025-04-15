@@ -1,4 +1,5 @@
 import time
+import allure
 
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -61,27 +62,28 @@ class ProductPage(Base):
 
     def buy_product(self):
 
-        Logger.add_start_step(method="buy_product")
+        with allure.step("Buy product"):
+            Logger.add_start_step(method="buy_product")
 
-        # Получаем текущий URL
-        self.get_current_url()
+            # Получаем текущий URL
+            self.get_current_url()
 
-        # Проверяем, что мы находимся на странице каталога - Одежда
-        self.assert_url("https://shop.ciay.ru/catalog/odezhda/futbolki/futbolka-good-luck-grn/")
+            # Проверяем, что мы находимся на странице каталога - Одежда
+            self.assert_url("https://shop.ciay.ru/catalog/odezhda/futbolki/futbolka-good-luck-grn/")
 
-        # Выбираем размер и количество
-        self.click_size_m()
-        time.sleep(1)
-        self.click_product_quant_plus_button()
-        time.sleep(1)
+            # Выбираем размер и количество
+            self.click_size_m()
+            time.sleep(1)
+            self.click_product_quant_plus_button()
+            time.sleep(1)
 
-        # Добавляем товар в корзину и нажимаем еще раз, для перехода в корзину
-        self.click_add_to_cart_button()
-        time.sleep(1)
-        self.click_move_to_cart_button()
-        time.sleep(1)
+            # Добавляем товар в корзину и нажимаем еще раз, для перехода в корзину
+            self.click_add_to_cart_button()
+            time.sleep(1)
+            self.click_move_to_cart_button()
+            time.sleep(1)
 
-        # Проверяем, что перешли в корзину
-        self.assert_word(self.get_topic_page_title_checkword(), "Корзина")
+            # Проверяем, что перешли в корзину
+            self.assert_word(self.get_topic_page_title_checkword(), "Корзина")
 
-        Logger.add_end_step(url=self.driver.current_url, method="buy_product")
+            Logger.add_end_step(url=self.driver.current_url, method="buy_product")

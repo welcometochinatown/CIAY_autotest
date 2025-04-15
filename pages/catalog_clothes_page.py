@@ -1,4 +1,5 @@
 import time
+import allure
 
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -69,24 +70,25 @@ class CatalogClothesPage(Base):
 
     def select_product(self):
 
-        Logger.add_start_step(method="select_product")
+        with allure.step("Select product page"):
+            Logger.add_start_step(method="select_product")
 
-        # Получаем текущий URL
-        self.get_current_url()
+            # Получаем текущий URL
+            self.get_current_url()
 
-        # Проверяем, что мы находимся на странице каталога - Одежда
-        self.assert_url("https://shop.ciay.ru/catalog/odezhda/")
+            # Проверяем, что мы находимся на странице каталога - Одежда
+            self.assert_url("https://shop.ciay.ru/catalog/odezhda/")
 
-        # Выбираем фильтры
-        self.click_price_dropdown()
-        time.sleep(1)
-        self.input_min_price_field("2000")
-        time.sleep(1)
-        self.input_max_price_field("7000")
-        time.sleep(3)
+            # Выбираем фильтры
+            self.click_price_dropdown()
+            time.sleep(1)
+            self.input_min_price_field("2000")
+            time.sleep(1)
+            self.input_max_price_field("7000")
+            time.sleep(3)
 
-        # Переходим в карточку продукта и проверяем, что выбрали нужную
-        self.click_product_link()
-        self.assert_word(self.get_topic_page_title_checkword(), "Футболка Good Luck grn")
+            # Переходим в карточку продукта и проверяем, что выбрали нужную
+            self.click_product_link()
+            self.assert_word(self.get_topic_page_title_checkword(), "Футболка Good Luck grn")
 
-        Logger.add_end_step(url=self.driver.current_url, method="select_product")
+            Logger.add_end_step(url=self.driver.current_url, method="select_product")

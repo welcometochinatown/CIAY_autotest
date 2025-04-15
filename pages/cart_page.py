@@ -1,4 +1,5 @@
 import time
+import allure
 
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -64,32 +65,33 @@ class CartPage(Base):
 
     def check_product_in_cart(self):
 
-        Logger.add_start_step(method="check_product_in_cart")
+        with allure.step("Сheck product in cart"):
+            Logger.add_start_step(method="check_product_in_cart")
 
-        # Получаем текущий URL
-        self.get_current_url()
+            # Получаем текущий URL
+            self.get_current_url()
 
-        # Проверяем, что мы находимся в корзине
-        self.assert_url("https://shop.ciay.ru/basket/")
+            # Проверяем, что мы находимся в корзине
+            self.assert_url("https://shop.ciay.ru/basket/")
 
-        # Проверки товара в корзине и делаем скриншот
-        self.assert_word(self.get_product_size_check(), "M")
-        self.assert_word(self.get_product_summary_check(), "7 000 руб.")
-        self.get_screenshot()
+            # Проверки товара в корзине и делаем скриншот
+            self.assert_word(self.get_product_size_check(), "M")
+            self.assert_word(self.get_product_summary_check(), "7 000 руб.")
+            self.get_screenshot()
 
-        # Переходим к оформлению заказа
-        self.click_checkout_button()
+            # Переходим к оформлению заказа
+            self.click_checkout_button()
 
-        # Проверяем, что перешли к оформлению заказа
-        self.assert_word(self.get_topic_page_title_checkword(), "Оформление заказа")
-        self.get_screenshot()
+            # Проверяем, что перешли к оформлению заказа
+            self.assert_word(self.get_topic_page_title_checkword(), "Оформление заказа")
+            self.get_screenshot()
 
-        # Возвращаемся в корзину и очищаем список товаров
-        self.driver.back()
-        time.sleep(1)
-        self.click_clear_cart_button()
-        time.sleep(1)
-        self.assert_word(self.get_clear_cart_check(), "Ваша корзина пуста")
+            # Возвращаемся в корзину и очищаем список товаров
+            self.driver.back()
+            time.sleep(1)
+            self.click_clear_cart_button()
+            time.sleep(1)
+            self.assert_word(self.get_clear_cart_check(), "Ваша корзина пуста")
 
-        Logger.add_end_step(url=self.driver.current_url, method="check_product_in_cart")
+            Logger.add_end_step(url=self.driver.current_url, method="check_product_in_cart")
 

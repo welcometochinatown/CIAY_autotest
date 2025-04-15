@@ -31,3 +31,7 @@ Test path:
 Version 0.1.1
     
     Добавили logger
+
+Version 0.1.2
+    
+    Добавили Allure

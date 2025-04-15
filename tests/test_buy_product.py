@@ -1,4 +1,6 @@
 import time
+
+import allure
 from selenium import webdriver
 
 from pages.main_page import MainPage
@@ -7,6 +9,7 @@ from pages.product_page import ProductPage
 from pages.cart_page import CartPage
 
 
+@allure.description("Test buy product")
 def test_buy_product(set_group, set_up):
     """
 
