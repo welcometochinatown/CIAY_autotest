@@ -105,7 +105,7 @@ class MainPage(Base):
 
     def enter_main_page(self):
         self.driver.get(self.url)
-        # self.driver.maximize_window()
+        self.driver.maximize_window()
 
         # Получаем текущий URL
         self.get_current_url()
