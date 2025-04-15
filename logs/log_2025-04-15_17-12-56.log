@@ -1,0 +1,55 @@
+
+-----
+Test: tests/test_buy_product.py::test_buy_product (call)
+Start time: 2025-04-15 17:13:01.353736
+Start name method: enter_main_page
+
+
+-----
+Test: tests/test_buy_product.py::test_buy_product (call)
+Start time: 2025-04-15 17:13:02.261731
+Start name method: login_and_verify
+
+End time: 2025-04-15 17:13:04.382982
+End name method: login_and_verify
+URL: https://shop.ciay.ru/personal/
+
+-----
+End time: 2025-04-15 17:13:05.303954
+End name method: enter_main_page
+URL: https://shop.ciay.ru/catalog/odezhda/
+
+-----
+
+-----
+Test: tests/test_buy_product.py::test_buy_product (call)
+Start time: 2025-04-15 17:13:05.304462
+Start name method: select_product
+
+End time: 2025-04-15 17:13:11.416478
+End name method: select_product
+URL: https://shop.ciay.ru/catalog/odezhda/futbolki/futbolka-good-luck-grn/
+
+-----
+
+-----
+Test: tests/test_buy_product.py::test_buy_product (call)
+Start time: 2025-04-15 17:13:11.416978
+Start name method: buy_product
+
+End time: 2025-04-15 17:13:16.597673
+End name method: buy_product
+URL: https://shop.ciay.ru/basket/
+
+-----
+
+-----
+Test: tests/test_buy_product.py::test_buy_product (call)
+Start time: 2025-04-15 17:13:16.597673
+Start name method: check_product_in_cart
+
+End time: 2025-04-15 17:13:21.516526
+End name method: check_product_in_cart
+URL: https://shop.ciay.ru/basket/
+
+-----

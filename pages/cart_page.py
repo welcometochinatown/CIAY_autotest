@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
 from base.base_class import Base
+from utilities.logger import Logger
 
 
 class CartPage(Base):
@@ -62,6 +63,9 @@ class CartPage(Base):
     # Methods
 
     def check_product_in_cart(self):
+
+        Logger.add_start_step(method="check_product_in_cart")
+
         # Получаем текущий URL
         self.get_current_url()
 
@@ -86,4 +90,6 @@ class CartPage(Base):
         self.click_clear_cart_button()
         time.sleep(1)
         self.assert_word(self.get_clear_cart_check(), "Ваша корзина пуста")
+
+        Logger.add_end_step(url=self.driver.current_url, method="check_product_in_cart")
 

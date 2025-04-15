@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
 from base.base_class import Base
+from utilities.logger import Logger
 
 
 class CatalogClothesPage(Base):
@@ -67,6 +68,9 @@ class CatalogClothesPage(Base):
     # Methods
 
     def select_product(self):
+
+        Logger.add_start_step(method="select_product")
+
         # Получаем текущий URL
         self.get_current_url()
 
@@ -84,3 +88,5 @@ class CatalogClothesPage(Base):
         # Переходим в карточку продукта и проверяем, что выбрали нужную
         self.click_product_link()
         self.assert_word(self.get_topic_page_title_checkword(), "Футболка Good Luck grn")
+
+        Logger.add_end_step(url=self.driver.current_url, method="select_product")

@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
 from base.base_class import Base
+from utilities.logger import Logger
 
 
 class MainPage(Base):
@@ -87,6 +88,8 @@ class MainPage(Base):
 
     def login_and_verify(self):
 
+        Logger.add_start_step(method="login_and_verify")
+
         # Нажимаем на pop-up с авторизацией
         self.click_personal_button()
 
@@ -103,7 +106,12 @@ class MainPage(Base):
         self.click_personal_button()
         self.assert_word(self.get_topic_heading_checkword(), "Личный кабинет")
 
+        Logger.add_end_step(url=self.driver.current_url, method="login_and_verify")
+
     def enter_main_page(self):
+
+        Logger.add_start_step(method="enter_main_page")
+
         self.driver.get(self.url)
         self.driver.maximize_window()
 
@@ -118,3 +126,5 @@ class MainPage(Base):
 
         # Проверяем, что перешли в каталог
         self.assert_word(self.get_topic_page_title_checkword(), "Одежда")
+
+        Logger.add_end_step(url=self.driver.current_url, method="enter_main_page")

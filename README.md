@@ -28,3 +28,6 @@ Test path:
     Очистка корзины
     Все проверки - PASSED
     
+Version 0.1.1
+    
+    Добавили logger
